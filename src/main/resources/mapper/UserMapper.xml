@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.qf.domain.User">
+        <id column="uid" property="uid"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="name" property="name"></result>
+        <result column="sex" property="sex"></result>
+        <result column="age" property="age"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="address" property="address"></result>
+        <result column="email" property="email"></result>
+        <result column="pic" property="pic"></result>
+        <result column="code" property="code"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid,username,password,name,sex,age,create_time,address,email,pic,code
+    </sql>
+    <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"></include> from user where username=#{username}
+    </select>
+
+    <delete id="deleteCodeByEmail" parameterType="java.lang.String">
+        delete from user where email=#{email}
+    </delete>
+
+    <select id="findByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from user where username=#{username}
+    </select>
+
+    <select id="checkCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from user where email=#{email}
+    </select>
+
+    <insert id="saveUser" parameterType="com.qf.domain.User">
+        insert into user(username,password) values (#{username},#{password})
+    </insert>
+
+    <update id="updateUser" parameterType="com.qf.domain.User">
+        update user
+        <set>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password}
+            </if>
+        </set>
+        where email=#{email}
+    </update>
+</mapper>

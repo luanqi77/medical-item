@@ -1,10 +1,13 @@
 package com.qf.controller;
 
 import com.qf.domain.User;
+import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.nio.cs.US_ASCII;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -46,5 +49,27 @@ public class UserController {
     public String regist(@RequestBody User user){
         return userService.regist(user);
     }
+
+
+    //马浩雲写后台部分
+    @RequestMapping(value = "/UserFindAll/{page}/{size}",method = RequestMethod.GET)
+    public ResponseUser UserFindAll(@PathVariable("page")Integer page, @PathVariable("size")Integer size){
+        return userService.UserFindAll(page,size);
+    }
+    @RequestMapping("/UserSelectById")
+    public User selectById(@RequestBody User user){
+        System.out.println(user.getUid());
+        User user1 = userService.UserSelectById(user.getUid());
+        return user1;
+
+    }
+    @RequestMapping("/updateUser")
+    public User updateUser(@RequestBody User user){
+
+        return  userService.updateData(user);
+
+
+    }
+    //马浩雲写后台部分________
 
 }

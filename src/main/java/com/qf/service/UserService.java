@@ -13,4 +13,8 @@ public interface UserService {
     User checkCode(String email);
 
     String regist(User user);
+
+    User selectOne(String username);
+
+    String updateUser(User user);
 }

@@ -1,15 +1,18 @@
 package com.qf.controller;
 
+import com.qf.dao.UserResponsitory;
 import com.qf.domain.User;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.nio.cs.US_ASCII;
+
 
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserResponsitory userResponsitory;
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -47,4 +50,13 @@ public class UserController {
         return userService.regist(user);
     }
 
+    @RequestMapping(value = "/selectOne",method = RequestMethod.POST)
+    public User selectOne(@RequestBody User user){
+        System.out.println(userService.selectOne(user.getUsername()));
+        return userService.selectOne(user.getUsername());
+    }
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
+    public String updateUser(@RequestBody User user){
+        return userService.updateUser(user);
+    }
 }

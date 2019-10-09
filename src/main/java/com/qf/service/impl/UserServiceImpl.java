@@ -1,6 +1,7 @@
 package com.qf.service.impl;
 
 import com.qf.dao.UserMapper;
+import com.qf.dao.UserResponsitory;
 import com.qf.domain.User;
 import com.qf.service.UserService;
 import com.qf.utils.EmailUtils;
@@ -20,7 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private EmailUtils emailUtils;
-
+    @Autowired
+    private UserResponsitory userResponsitory;
     @Override
     public String login(User user) {
 
@@ -80,5 +82,19 @@ public class UserServiceImpl implements UserService {
             }
         }
                 return "fail";
+    }
+
+    @Override
+    public User selectOne(String username) {
+        return userResponsitory.findUserByUsername(username);
+    }
+
+    @Override
+    public String updateUser(User user) {
+        User user1 = userResponsitory.saveAndFlush(user);
+        if (user1!=null){
+            return "ok";
+        }
+        return "fail";
     }
 }

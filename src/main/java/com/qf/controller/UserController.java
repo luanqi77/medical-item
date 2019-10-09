@@ -2,10 +2,13 @@ package com.qf.controller;
 
 import com.qf.dao.UserResponsitory;
 import com.qf.domain.User;
+import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -50,13 +53,36 @@ public class UserController {
         return userService.regist(user);
     }
 
+
+    //马浩雲写后台部分
+    @RequestMapping(value = "/UserFindAll/{page}/{size}",method = RequestMethod.GET)
+    public ResponseUser UserFindAll(@PathVariable("page")Integer page, @PathVariable("size")Integer size){
+        return userService.UserFindAll(page,size);
+    }
+    @RequestMapping("/UserSelectById")
+    public User selectById(@RequestBody User user){
+        System.out.println(user.getUid());
+        User user1 = userService.UserSelectById(user.getUid());
+        return user1;
+
+    }
+    @RequestMapping("/updateUser")
+    public User updateUser(@RequestBody User user){
+
+        return  userService.updateData(user);
+
+
+    }
+    //马浩雲写后台部分________
+
     @RequestMapping(value = "/selectOne",method = RequestMethod.POST)
     public User selectOne(@RequestBody User user){
         System.out.println(userService.selectOne(user.getUsername()));
         return userService.selectOne(user.getUsername());
     }
-    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
-    public String updateUser(@RequestBody User user){
+    //前台修改
+    @RequestMapping(value = "/updateUsers",method = RequestMethod.POST)
+    public String updateUsers(@RequestBody User user){
         return userService.updateUser(user);
     }
 }

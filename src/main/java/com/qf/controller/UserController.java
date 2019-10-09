@@ -1,11 +1,12 @@
 package com.qf.controller;
 
+import com.qf.dao.UserResponsitory;
 import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.nio.cs.US_ASCII;
+
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserResponsitory userResponsitory;
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -72,4 +75,14 @@ public class UserController {
     }
     //马浩雲写后台部分________
 
+    @RequestMapping(value = "/selectOne",method = RequestMethod.POST)
+    public User selectOne(@RequestBody User user){
+        System.out.println(userService.selectOne(user.getUsername()));
+        return userService.selectOne(user.getUsername());
+    }
+    //前台修改
+    @RequestMapping(value = "/updateUsers",method = RequestMethod.POST)
+    public String updateUsers(@RequestBody User user){
+        return userService.updateUser(user);
+    }
 }

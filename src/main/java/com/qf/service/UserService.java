@@ -3,7 +3,6 @@ package com.qf.service;
 import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 
-
 public interface UserService {
 
     String login(User user);
@@ -15,6 +14,10 @@ public interface UserService {
     User checkCode(String email);
 
     String regist(User user);
+
+    User selectOne(String username);
+
+    String updateUser(User user);
 
 
     //马浩雲写service部分

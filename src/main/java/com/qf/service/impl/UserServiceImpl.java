@@ -26,11 +26,10 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private EmailUtils emailUtils;
-
-
-    //马浩雲
-    @Resource
+    @Autowired
     private UserResponsitory userResponsitory;
+
+
     //马浩雲
 
     @Override
@@ -125,4 +124,18 @@ public class UserServiceImpl implements UserService {
         return userResponsitory.saveAndFlush(user);
     }
     //马浩雲写userServiceImpl部分_________________
+
+    @Override
+    public User selectOne(String username) {
+        return userResponsitory.findUserByUsername(username);
+    }
+
+    @Override
+    public String updateUser(User user) {
+        User user1 = userResponsitory.saveAndFlush(user);
+        if (user1!=null){
+            return "ok";
+        }
+        return "fail";
+    }
 }

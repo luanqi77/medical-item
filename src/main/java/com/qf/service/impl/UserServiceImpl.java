@@ -138,4 +138,10 @@ public class UserServiceImpl implements UserService {
         }
         return "fail";
     }
+
+    @Override
+    public Integer selectUid(String username) {
+        User byUsername = userResponsitory.findUserByUsername(username);
+        return byUsername.getUid();
+    }
 }

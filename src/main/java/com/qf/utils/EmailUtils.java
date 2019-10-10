@@ -15,7 +15,7 @@ import java.util.Random;
 
 @Component
 public class EmailUtils {
-    @Value("${spring.mail.username}")
+    @Value("594138543@qq.com")
     private String from;
     @Resource
     private JavaMailSender javaMailSender;

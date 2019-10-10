@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserQuestionServiceImpl implements UserQuestionService {
@@ -16,16 +17,22 @@ public class UserQuestionServiceImpl implements UserQuestionService {
 
     @Override
     public String insertQuestion(UserQuestion userQuestion) {
-        userQuestion.setCreateTime(new Date());
-        UserQuestion save = userQuestionResponsitory.save(userQuestion);
-        if (save!=null){
+        if(!userQuestion.getDescription().isEmpty()&&!userQuestion.getAge().equals("")){
+            userQuestion.setCreateTime(new Date());
+            UserQuestion save = userQuestionResponsitory.save(userQuestion);
             return "ok";
         }
         return "no";
     }
 
     @Override
-    public List<UserQuestion> selectQuestion() {
-        return  userQuestionResponsitory.findAll();
+    public List<UserQuestion> selectQuestion(Integer uid) {
+         return userQuestionResponsitory.findUserQuestionByUid(uid);
+
+    }
+
+    @Override
+    public UserQuestion selectUserQuestion(String description) {
+        return userQuestionResponsitory.findUserQuestionByDescription(description);
     }
 }

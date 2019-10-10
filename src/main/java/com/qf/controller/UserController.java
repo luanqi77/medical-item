@@ -53,6 +53,11 @@ public class UserController {
         return userService.regist(user);
     }
 
+    @RequestMapping(value = "/selectUid",method = RequestMethod.POST)
+    public Integer selectUid(@RequestBody User user){
+        return userService.selectUid(user.getUsername());
+    }
+
 
     //马浩雲写后台部分
     @RequestMapping(value = "/UserFindAll/{page}/{size}",method = RequestMethod.GET)

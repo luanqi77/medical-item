@@ -1,6 +1,7 @@
 package com.qf.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class DoctorAnswer {
     private String  answer;
 
     @Column(name="create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
     private String state;

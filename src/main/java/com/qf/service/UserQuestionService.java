@@ -7,5 +7,7 @@ import java.util.List;
 public interface UserQuestionService {
     String insertQuestion(UserQuestion userQuestion);
 
-    List<UserQuestion> selectQuestion();
+    List<UserQuestion> selectQuestion(Integer uid);
+
+    UserQuestion selectUserQuestion(String description);
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.NewsMapper">
+   <resultMap id="myNews" type="com.qf.domain.News">
+       <id property="nid" column="nid"/>
+       <result property="title" column="title"/>
+       <result property="text" column="text"/>
+       <result property="createTime" column="create_time"/>
+       <result property="author" column="author"/>
+   </resultMap>
+
+    <select id="findAllNews"  resultMap="myNews">
+        select * from news
+    </select>
+
+    <insert id="insertNews" parameterType="com.qf.domain.News" >
+        insert into news(nid,title,text,create_time,author)values
+        (#{nid},#{title},#{text},#{createTime},#{author})
+    </insert>
+
+    <delete id="deleteNews" parameterType="com.qf.domain.News">
+        delete from news where nid=#{nid}
+    </delete>
+
+    <select id="selectNewsById" resultMap="myNews" parameterType="Integer">
+        select * from news where nid=#{nid}
+    </select>
+
+    <update id="updateNews" parameterType="com.qf.domain.News" >
+            update news
+            <set>
+                <if test="title!=null and title!=''">
+                    title=#{title},
+                </if>
+                <if test="text!=null and text!=''">
+                    text=#{text},
+                </if>
+                <if test="createTime!=null">
+                    create_time=#{createTime},
+                </if>
+                <if test="author!=null and author!=''">
+                    author=#{author}
+                </if>
+            </set>
+        where nid=#{nid}
+        </update>
+</mapper>

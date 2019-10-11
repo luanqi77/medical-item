@@ -1,7 +1,11 @@
 package com.qf.controller;
 
+import com.qf.domain.Docter;
+import com.qf.domain.DoctorAnswer;
 import com.qf.domain.User;
 import com.qf.domain.UserQuestion;
+import com.qf.service.DoctorAnswerService;
+import com.qf.service.DoctorService;
 import com.qf.service.UserQuestionService;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,10 @@ public class UserQuestionController {
     private UserQuestionService userQuestionService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private DoctorAnswerService doctorAnswerService;
     @RequestMapping(value = "/insertQuestion",method = RequestMethod.POST)
     public String insertQuestion(@RequestBody UserQuestion userQuestion){
         return  userQuestionService.insertQuestion(userQuestion);
@@ -34,4 +42,16 @@ public class UserQuestionController {
     public UserQuestion selectUserQuestion(@RequestBody UserQuestion userQuestion){
         return userQuestionService.selectUserQuestion(userQuestion.getDescription());
     }
+    @RequestMapping(value = "/selectDocter",method = RequestMethod.POST)
+    public Docter selectDocter(@RequestBody UserQuestion userQuestion){
+        UserQuestion userQuestion1 = userQuestionService.selectUserQuestion(userQuestion.getDescription());
+        return doctorService.selectDocter(userQuestion1.getDid());
+    }
+
+    @RequestMapping(value = "/selectAnswer",method = RequestMethod.POST)
+    public DoctorAnswer selectAnswer(@RequestBody UserQuestion userQuestion){
+        UserQuestion userQuestion1 = userQuestionService.selectUserQuestion(userQuestion.getDescription());
+        return doctorAnswerService.selectAnswer(userQuestion1.getQid());
+    }
+
 }

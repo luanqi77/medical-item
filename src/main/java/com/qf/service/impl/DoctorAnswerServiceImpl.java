@@ -46,4 +46,9 @@ public class DoctorAnswerServiceImpl implements DoctorAnswerService {
             doctorAnswerResponsitory.deleteById(aid);
         }
     }
+
+    @Override
+    public DoctorAnswer selectAnswer(Integer qid) {
+        return doctorAnswerResponsitory.findDoctorAnswerByQid(qid);
+    }
 }

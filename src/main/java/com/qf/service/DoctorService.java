@@ -7,4 +7,6 @@ public interface DoctorService {
     ResponseUser DoctorFindAll(Integer page, Integer size);
     Docter findById(Integer did);
     Docter updateDate(Docter docter);
+
+    Docter selectDocter(Integer did);
 }

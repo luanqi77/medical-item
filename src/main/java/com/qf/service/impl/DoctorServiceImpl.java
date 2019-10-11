@@ -57,4 +57,9 @@ public class DoctorServiceImpl implements DoctorService {
 
         return doctorResponsitory.saveAndFlush(docter);
     }
+
+    @Override
+    public Docter selectDocter(Integer did) {
+        return doctorResponsitory.findDocterByDid(did);
+    }
 }

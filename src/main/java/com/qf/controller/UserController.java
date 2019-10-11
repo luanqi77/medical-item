@@ -4,8 +4,10 @@ import com.qf.dao.UserResponsitory;
 import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
+import com.qf.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -16,7 +18,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserResponsitory userResponsitory;
-
+    @Autowired
+    private UploadUtils uploadUtils;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(@RequestBody User user){
@@ -89,5 +92,16 @@ public class UserController {
     @RequestMapping(value = "/updateUsers",method = RequestMethod.POST)
     public String updateUsers(@RequestBody User user){
         return userService.updateUser(user);
+    }
+
+    @RequestMapping(value = "/uploadpics",method = RequestMethod.POST)
+    public String uploadpics(@RequestParam MultipartFile file){
+        String res=uploadUtils.upload(file);
+        if (res!=null){
+
+            return res;
+        }else {
+            return null;
+        }
     }
 }

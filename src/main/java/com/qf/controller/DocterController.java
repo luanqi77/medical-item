@@ -6,6 +6,8 @@ import com.qf.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * @PackageName:com.qf.controller;
@@ -35,5 +37,6 @@ public class DocterController {
     public Docter updateDoctor(@RequestBody Docter docter) {
         return doctorService.updateDate(docter);
     }
+
 
 }

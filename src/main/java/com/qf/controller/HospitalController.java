@@ -2,11 +2,10 @@ package com.qf.controller;
 
 import com.qf.domain.History;
 import com.qf.domain.Hospital;
+import com.qf.response.ResponseUser;
 import com.qf.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +47,12 @@ public class HospitalController {
     @RequestMapping("updateHospital")
     public Hospital updateHospital(@RequestBody Hospital hospital){
         return hospitalService.updateHospital(hospital);
+    }
+
+    @RequestMapping(value = "/selectHospital/{page}/{size}",method = RequestMethod.GET)
+    public ResponseUser selectHospital(@PathVariable("page")Integer page, @PathVariable("size")Integer size){
+        System.out.println(hospitalService.selectHospital(page,size));
+        return hospitalService.selectHospital(page,size);
     }
 
 }

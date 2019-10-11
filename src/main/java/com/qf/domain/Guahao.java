@@ -23,7 +23,7 @@ public class Guahao {
     private Integer uid;
     private String gname;
     private Integer age;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+
     private Date g_time;
     private String syn;
     private String department;

@@ -2,8 +2,11 @@ package com.qf.controller;
 
 import com.qf.domain.Guahao;
 import com.qf.domain.History;
+import com.qf.domain.User;
 import com.qf.service.GuahaoService;
+import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +24,8 @@ import java.util.List;
 public class GuahaoController {
     @Autowired
     private GuahaoService guahaoService;
-
+    @Autowired
+    private UserService userService;
     @RequestMapping("/findAllGuahao")
     public List<Guahao> findAllGuahao(){
         return guahaoService.findAllGuahao();
@@ -46,6 +50,11 @@ public class GuahaoController {
     @RequestMapping("updateGuahao")
     public Guahao updateGuahao(@RequestBody Guahao guahao){
         return guahaoService.updateGuahao(guahao);
+    }
+
+    @RequestMapping("/insertOneGuahao")
+    public String insertOneGuahao(@RequestBody Guahao guahao){
+        return guahaoService.insertOneGuahao(guahao);
     }
 
 }

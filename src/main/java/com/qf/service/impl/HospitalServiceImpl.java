@@ -2,8 +2,12 @@ package com.qf.service.impl;
 
 import com.qf.dao.HospitalRespository;
 import com.qf.domain.Hospital;
+import com.qf.domain.User;
+import com.qf.response.ResponseUser;
 import com.qf.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +60,20 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public void deleteHospital(Integer hid) {
         hospitalRespository.deleteById(hid);
+    }
+
+    @Override
+    public ResponseUser selectHospital(Integer page, Integer size) {
+        PageRequest of = PageRequest.of(page - 1, size);
+
+        Page<Hospital> all = hospitalRespository.findAll(of);
+
+        List<Hospital> content = all.getContent();
+        long totalElements = all.getTotalElements();
+
+        ResponseUser responseUser =new ResponseUser();
+        responseUser.setList(content);
+        responseUser.setTotal(totalElements);
+        return responseUser;
     }
 }

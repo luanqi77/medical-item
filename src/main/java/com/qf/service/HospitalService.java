@@ -3,6 +3,7 @@ package com.qf.service;
 
 
 import com.qf.domain.Hospital;
+import com.qf.response.ResponseUser;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface HospitalService {
     Hospital selectHospitalById(Integer hid);
 
     void deleteHospital(Integer hid);
+
+    ResponseUser selectHospital(Integer page, Integer size);
 }

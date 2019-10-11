@@ -21,4 +21,7 @@ public interface GuahaoService {
     Guahao selectGuahaoById(Integer gid);
 
     void deleteGuahao(Guahao guahao);
+
+    String insertOneGuahao(Guahao guahao);
+
 }

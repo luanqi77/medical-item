@@ -1,7 +1,9 @@
 package com.qf.service.impl;
 
 import com.qf.dao.GuahaoRespository;
+import com.qf.dao.UserResponsitory;
 import com.qf.domain.Guahao;
+import com.qf.domain.User;
 import com.qf.service.GuahaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class GuahaoServiceImpl implements GuahaoService {
     @Autowired
     private GuahaoRespository guahaoRespository;
+    @Autowired
+    private UserResponsitory userResponsitory;
     @Override
     public List<Guahao> findAllGuahao() {
         return guahaoRespository.findAll();
@@ -55,4 +59,16 @@ public class GuahaoServiceImpl implements GuahaoService {
     public void deleteGuahao(Guahao guahao) {
         guahaoRespository.deleteById(guahao.getGid());
     }
+
+    @Override
+    public String insertOneGuahao(Guahao guahao) {
+        if (!guahao.getGname().isEmpty()){
+            Guahao save = guahaoRespository.save(guahao);
+            return "ok";
+        }else {
+            return "fail";
+        }
+
+    }
+
 }

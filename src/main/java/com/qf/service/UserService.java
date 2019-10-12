@@ -26,6 +26,7 @@ public interface UserService {
     User UserSelectById(Integer userId);
     User  updateData(User user);
 
+    String updatePic(String username, String pic);
 
 
     //马浩雲写service部分__________

@@ -17,7 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -143,5 +145,20 @@ public class UserServiceImpl implements UserService {
     public Integer selectUid(String username) {
         User byUsername = userResponsitory.findUserByUsername(username);
         return byUsername.getUid();
+    }
+
+    @Override
+    public String updatePic(String username, String pic) {
+        User user=new User();
+        user.setPic(pic);
+        user.setUsername(username);
+        if (username!=null&&pic!=null){
+            userMapper.updatePic(user);
+            return "ok";
+        }
+
+        return "fail";
+
+
     }
 }

@@ -2,6 +2,9 @@ package com.qf.dao;
 
 import com.qf.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.repository.query.Param;
+
+import java.util.Map;
 
 @Mapper
 public interface UserMapper {
@@ -16,4 +19,8 @@ public interface UserMapper {
     void saveUser(User user);
 
     void updateUser(User user);
+
+    void updatePic(User user);
+
+
 }

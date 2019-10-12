@@ -51,4 +51,10 @@
         </set>
         where email=#{email}
     </update>
+
+    <update id="updatePic"  parameterType="com.qf.domain.User" >
+        update user set pic=#{pic} where username=#{username}
+
+    </update>
+
 </mapper>

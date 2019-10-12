@@ -6,6 +6,9 @@ import com.qf.service.UserQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +21,17 @@ public class UserQuestionServiceImpl implements UserQuestionService {
     @Override
     public String insertQuestion(UserQuestion userQuestion) {
         if(!userQuestion.getDescription().isEmpty()&&!userQuestion.getAge().equals("")){
-            userQuestion.setCreateTime(new Date());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            String format1 = format.format(date);
+
+            try {
+                Date date1=format.parse(format1);
+                userQuestion.setCreateTime(date1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             UserQuestion save = userQuestionResponsitory.save(userQuestion);
             return "ok";
         }

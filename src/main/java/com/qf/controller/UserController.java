@@ -94,14 +94,9 @@ public class UserController {
         return userService.updateUser(user);
     }
 
-    @RequestMapping(value = "/uploadpics",method = RequestMethod.POST)
-    public String uploadpics(@RequestParam MultipartFile file){
-        String res=uploadUtils.upload(file);
-        if (res!=null){
-
-            return res;
-        }else {
-            return null;
-        }
+    @RequestMapping(value = "/uploadpics/{username}",method = RequestMethod.POST)
+    public String uploadpics(@RequestParam MultipartFile file,@PathVariable("username") String username){
+        String pic=uploadUtils.upload(file);
+        return userService.updatePic(username,pic);
     }
 }

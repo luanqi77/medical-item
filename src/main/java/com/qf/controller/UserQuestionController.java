@@ -33,6 +33,8 @@ public class UserQuestionController {
     public List<UserQuestion> selectQuestion(@RequestBody User user){
         if (user.getUsername()!=null){
             Integer uid = userService.selectUid(user.getUsername());
+            System.out.println(userQuestionService.selectQuestion(uid));
+
             return userQuestionService.selectQuestion(uid);
         }
             return null;

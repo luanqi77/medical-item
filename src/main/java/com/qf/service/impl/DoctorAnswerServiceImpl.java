@@ -1,7 +1,6 @@
 package com.qf.service.impl;
 
 import com.qf.dao.DoctorAnswerResponsitory;
-
 import com.qf.domain.DoctorAnswer;
 import com.qf.response.ResponseUser;
 import com.qf.service.DoctorAnswerService;
@@ -50,5 +49,15 @@ public class DoctorAnswerServiceImpl implements DoctorAnswerService {
     @Override
     public DoctorAnswer selectAnswer(Integer qid) {
         return doctorAnswerResponsitory.findDoctorAnswerByQid(qid);
+    }
+
+    @Override
+    public List<DoctorAnswer> findByDid(Integer did) {
+        return doctorAnswerResponsitory.findByDid(did);
+    }
+
+    @Override
+    public DoctorAnswer addanswered(DoctorAnswer answer) {
+        return doctorAnswerResponsitory.save(answer);
     }
 }

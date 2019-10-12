@@ -11,5 +11,7 @@ public interface UserQuestionService {
 
     UserQuestion selectUserQuestion(String description);
 
+    List<UserQuestion> findByDid(Integer did);
 
+    UserQuestion findByQid(Integer qid);
 }

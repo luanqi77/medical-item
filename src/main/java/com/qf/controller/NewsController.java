@@ -57,4 +57,5 @@ public class NewsController {
         Integer integer = newsService.updateNews(news);
         return integer;
     }
+
 }

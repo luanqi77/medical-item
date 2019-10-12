@@ -9,4 +9,12 @@ public interface DoctorService {
     Docter updateDate(Docter docter);
 
     Docter selectDocter(Integer did);
+
+    Docter docteradd(Docter docters);
+
+    Docter selectByDname(String dname);
+
+    Docter updateDocter(Docter docters);
+
+    Docter selectByDid(Integer did);
 }

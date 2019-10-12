@@ -6,6 +6,8 @@ import com.qf.service.PartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @PackageName:com.qf.controller;
  * @ClassName:Partment;
@@ -39,5 +41,10 @@ public class PartmentController {
     public Partment updatePartment(@RequestBody Partment partment){
         return partmentService.updateDate(partment);
 
+    }
+
+    @RequestMapping("/getParts")
+    public List<Partment> findAll(){
+        return partmentService.findAll();
     }
 }

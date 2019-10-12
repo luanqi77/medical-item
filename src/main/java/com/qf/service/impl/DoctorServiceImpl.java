@@ -2,7 +2,6 @@ package com.qf.service.impl;
 
 import com.qf.dao.DoctorResponsitory;
 import com.qf.domain.Docter;
-import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 import com.qf.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +60,30 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Docter selectDocter(Integer did) {
         return doctorResponsitory.findDocterByDid(did);
+    }
+
+    @Override
+    public Docter docteradd(Docter docters) {
+        Docter save = doctorResponsitory.save(docters);
+        return save;
+    }
+
+    @Override
+    public Docter selectByDname(String dname) {
+        Docter byDname = doctorResponsitory.findByDname(dname);
+        return byDname;
+    }
+
+    @Override
+    public Docter updateDocter(Docter docters) {
+        Docter docters1 = doctorResponsitory.saveAndFlush(docters);
+        return docters1;
+    }
+
+    @Override
+    public Docter selectByDid(Integer did) {
+        Optional<Docter> byId = doctorResponsitory.findById(did);
+        Docter docters = byId.get();
+        return docters;
     }
 }

@@ -9,6 +9,8 @@
         <module name="medical-item" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel>
+      <module name="medical-item" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

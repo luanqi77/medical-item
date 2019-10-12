@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserQuestionServiceImpl implements UserQuestionService {
@@ -49,5 +47,13 @@ public class UserQuestionServiceImpl implements UserQuestionService {
         return userQuestionResponsitory.findUserQuestionByDescription(description);
     }
 
+    @Override
+    public List<UserQuestion> findByDid(Integer did) {
+        return userQuestionResponsitory.findByDid(did);
+    }
 
+    @Override
+    public UserQuestion findByQid(Integer qid) {
+        return userQuestionResponsitory.findByQid(qid);
+    }
 }

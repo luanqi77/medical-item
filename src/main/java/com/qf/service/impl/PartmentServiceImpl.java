@@ -57,4 +57,16 @@ public class PartmentServiceImpl implements PartmentService {
         return partmentResponsitory.saveAndFlush(partment);
 
     }
+
+    @Override
+    public List<Partment> findAll() {
+        return partmentResponsitory.findAll();
+    }
+
+    @Override
+    public Partment findByPid(Integer pid) {
+        Optional<Partment> byId = partmentResponsitory.findById(pid);
+        Partment partment = byId.get();
+        return partment;
+    }
 }

@@ -9,7 +9,10 @@ import com.qf.service.DoctorService;
 import com.qf.service.UserQuestionService;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,9 +23,10 @@ public class UserQuestionController {
     @Autowired
     private UserService userService;
     @Autowired
-    private DoctorService doctorService;
-    @Autowired
     private DoctorAnswerService doctorAnswerService;
+    @Autowired
+    private DoctorService doctorService;
+
     @RequestMapping(value = "/insertQuestion",method = RequestMethod.POST)
     public String insertQuestion(@RequestBody UserQuestion userQuestion){
         return  userQuestionService.insertQuestion(userQuestion);
@@ -56,5 +60,16 @@ public class UserQuestionController {
         return doctorAnswerService.selectAnswer(userQuestion1.getQid());
     }
 
+    @RequestMapping("/getquestions")
+    public List<UserQuestion> getquestions(@RequestBody Docter did){
+        List<UserQuestion> byDid = userQuestionService.findByDid(did.getDid());
+        return byDid;
+    }
+
+    @RequestMapping("/queryquestion")
+    public UserQuestion queryquestion(@RequestBody UserQuestion qid){
+        UserQuestion byQid = userQuestionService.findByQid(qid.getQid());
+        return byQid;
+    }
 
 }

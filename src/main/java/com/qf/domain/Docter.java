@@ -34,6 +34,6 @@ public class Docter {
 
     private String pic;
     private String experience;
-    private Integer code;
+    private String realname;
 
 }

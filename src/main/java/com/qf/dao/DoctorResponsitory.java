@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DoctorResponsitory extends JpaRepository<Docter,Integer> {
 
         Docter findDocterByDid(Integer did);
+
+        public Docter findByDname(String dname);
 }

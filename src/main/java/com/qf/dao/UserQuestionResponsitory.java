@@ -10,4 +10,5 @@ public interface UserQuestionResponsitory extends JpaRepository<UserQuestion,Int
         UserQuestion findUserQuestionByDescription(String description);
 
         List<UserQuestion> findUserQuestionByUid(Integer uid);
+
 }

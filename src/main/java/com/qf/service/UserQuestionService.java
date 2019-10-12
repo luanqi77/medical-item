@@ -10,4 +10,6 @@ public interface UserQuestionService {
     List<UserQuestion> selectQuestion(Integer uid);
 
     UserQuestion selectUserQuestion(String description);
+
+
 }

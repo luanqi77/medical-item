@@ -18,20 +18,15 @@ public class UserQuestionServiceImpl implements UserQuestionService {
 
     @Override
     public String insertQuestion(UserQuestion userQuestion) {
-        if(!userQuestion.getDescription().isEmpty()&&!userQuestion.getAge().equals("")){
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
-            String format1 = format.format(date);
-
-            try {
-                Date date1=format.parse(format1);
-                userQuestion.setCreateTime(date1);
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if (userQuestion.getUid()!=null) {
+            if (!userQuestion.getDescription().isEmpty() && !userQuestion.getAge().equals("")) {
+                userQuestion.setCreateTime(new Date());
+                System.out.println(userQuestion);
+                UserQuestion save = userQuestionResponsitory.save(userQuestion);
+                return "ok";
+            }else {
+                return "noMessage";
             }
-
-            UserQuestion save = userQuestionResponsitory.save(userQuestion);
-            return "ok";
         }
         return "no";
     }

@@ -47,4 +47,11 @@ public class YaoController {
     public Yao updateYao(@RequestBody Yao yao){
         return yaoService.updateYao(yao);
     }
+
+    @RequestMapping("/findYao")
+    public List<Yao> findAll(){
+        List<Yao> all = yaoService.findAll();
+        System.out.println(all);
+        return all;
+    }
 }

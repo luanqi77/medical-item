@@ -23,4 +23,5 @@ public interface YaoService {
 
     void deleteYao(Yao yao);
 
+    public List<Yao> findAll();
 }

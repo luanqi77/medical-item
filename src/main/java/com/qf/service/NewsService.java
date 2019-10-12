@@ -22,4 +22,9 @@ public interface NewsService {
     Integer insertNews(News news);
 
     News selectNewsById(Integer nid);
+
+    List<News> findAll();
+
+    News findByNid(Integer nid);
+    News findById(Integer nid);
 }

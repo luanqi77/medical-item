@@ -30,7 +30,7 @@ public class Docter {
     private Integer workyears;
     private String email;
     @Column(name="work_time")
-    private String workTime;
+    private Date workTime;
 
     private String pic;
     private String experience;

@@ -58,4 +58,20 @@ public class NewsController {
         return integer;
     }
 
+    @RequestMapping("/findNews")
+    public List<News> findAll(){
+        List<News> all = newsService.findAll();
+        System.out.println(all);
+        return all;
+    }
+
+    @RequestMapping("/findnewById")
+    public News findById(@RequestBody News nid){
+        News byId = newsService.findById(nid.getNid());
+
+//        News byNid = newsService.findByNid(nid.getNid());
+        System.out.println(byId);
+        return byId;
+    }
+
 }

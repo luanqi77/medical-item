@@ -1,12 +1,16 @@
 package com.qf.service.impl;
 
 import com.qf.dao.NewsMapper;
+import com.qf.dao.NewsResponsitory;
+import com.qf.dao.YaoRespository;
 import com.qf.domain.News;
 import com.qf.service.NewsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Description:
@@ -19,6 +23,8 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
     @Resource
     private NewsMapper newsMapper;
+    @Autowired
+    private NewsResponsitory newsResponsitory;
 
     @Override
     public List<News> findAllNews() {
@@ -53,4 +59,30 @@ public class NewsServiceImpl implements NewsService {
     }
 
 
+
+
+    @Override
+    public List<News> findAll() {
+        return newsResponsitory.findAll();
+    }
+
+//    @Override
+//    public News findById(Integer id) {
+//        Optional<News> byId = newsResponsitory.findById(id);
+//        News news = byId.get();
+//        return news;
+//    }
+
+    @Override
+    public News findByNid(Integer nid) {
+        News byNid = newsResponsitory.findByNid(nid);
+        return byNid;
+    }
+
+    @Override
+    public News findById(Integer nid) {
+        Optional<News> byId = newsResponsitory.findById(nid);
+        News news = byId.get();
+        return news;
+    }
 }

@@ -3,6 +3,7 @@ package com.qf.domain;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -13,9 +14,11 @@ import java.util.Date;
  * @Time: 17:03
  */
 @Data
+@Entity
+@Table(name = "news")
 public class News {
-   // @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer nid;
 
     private String title;

@@ -57,4 +57,9 @@ public class YaoServiceImpl implements YaoService {
     public void deleteYao(Yao yao) {
        yaoRespository.deleteById(yao.getYid());
     }
+
+    @Override
+    public List<Yao> findAll() {
+        return yaoRespository.findAll();
+    }
 }

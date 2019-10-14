@@ -1,5 +1,6 @@
 package com.qf.controller;
 
+import com.qf.dao.UserResponsitory;
 import com.qf.domain.Docter;
 import com.qf.domain.DoctorAnswer;
 import com.qf.domain.User;
@@ -26,6 +27,8 @@ public class UserQuestionController {
     private DoctorAnswerService doctorAnswerService;
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private UserResponsitory userResponsitory;
 
     @RequestMapping(value = "/insertQuestion",method = RequestMethod.POST)
     public String insertQuestion(@RequestBody UserQuestion userQuestion){

@@ -15,7 +15,7 @@ import java.util.Random;
 
 @Component
 public class EmailUtils {
-    @Value("594138543@qq.com")
+    @Value("260995992@qq.com")
     private String from;
     @Resource
     private JavaMailSender javaMailSender;
